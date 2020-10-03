@@ -1,5 +1,6 @@
 ﻿using BasicShopWebAPI.Data.Configurations;
 using BasicShopWebAPI.Data.Entities;
+using BasicShopWebAPI.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -29,6 +30,8 @@ namespace BasicShopWebAPI.Data.EF
             //modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             //modelBuilder.ApplyConfiguration(new TransactionConfiguration());
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            modelBuilder.Seed();
 
             //base.OnModelCreating(modelBuilder);
         }
