@@ -13,18 +13,18 @@ namespace BasicShopWebAPI.Data.EF
     {
         public EShopDbContext CreateDbContext(string[] args)
         {
-            //IConfigurationRoot configuration = new ConfigurationBuilder()
-            //    .SetBasePath(Directory.GetCurrentDirectory())
-            //    .AddJsonFile("appsettings.json")
-            //    .Build();
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
 
-            //var connectionString = configuration.GetConnectionString("eShopSolutionDb");
+            var connectionString = configuration.GetConnectionString("ShopSolutionDb");
 
-            //var optionsBuilder = new DbContextOptionsBuilder<EShopDbContext>();
-            //optionsBuilder.UseSqlServer(connectionString);
+            var optionsBuilder = new DbContextOptionsBuilder<EShopDbContext>();
+            optionsBuilder.UseSqlServer(connectionString);
 
-            //return new EShopDbContext(optionsBuilder.Options);
-            return new EShopDbContext(null);
+            return new EShopDbContext(optionsBuilder.Options);
+            //return new EShopDbContext(null);
         }
     }
 }
