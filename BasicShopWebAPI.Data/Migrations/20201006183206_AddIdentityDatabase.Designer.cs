@@ -4,14 +4,16 @@ using BasicShopWebAPI.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BasicShopWebAPI.Data.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201006183206_AddIdentityDatabase")]
+    partial class AddIdentityDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,16 +75,6 @@ namespace BasicShopWebAPI.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "f377ccae-6fcc-43a6-a000-d60cb22e565a",
-                            Description = "Administrator role",
-                            Name = "admin",
-                            NormalizedName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("BasicShopWebAPI.Data.Entities.AppUser", b =>
@@ -149,27 +141,6 @@ namespace BasicShopWebAPI.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "708c59e2-fc7e-4412-887b-beb64facceea",
-                            Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "duythanh3101@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "Thanh",
-                            LastName = "Pham",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "duythanh3101@gmail.com",
-                            NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEISzDRZ+xwP+dHUeyWklecZHpdfUThqmZyEMXv/SzFwQHeafoVW41sOL87RE+EaRGw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("BasicShopWebAPI.Data.Entities.Cart", b =>
@@ -418,7 +389,7 @@ namespace BasicShopWebAPI.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2020, 10, 7, 1, 44, 44, 600, DateTimeKind.Local).AddTicks(7224));
+                        .HasDefaultValue(new DateTime(2020, 10, 7, 1, 32, 5, 517, DateTimeKind.Local).AddTicks(5332));
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
@@ -514,7 +485,7 @@ namespace BasicShopWebAPI.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2020, 10, 7, 1, 44, 44, 624, DateTimeKind.Local).AddTicks(3180),
+                            DateCreated = new DateTime(2020, 10, 7, 1, 32, 5, 543, DateTimeKind.Local).AddTicks(7751),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -674,6 +645,9 @@ namespace BasicShopWebAPI.Data.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<Guid?>("AppUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("ExternalTransactionId")
                         .HasColumnType("nvarchar(max)");
 
@@ -700,7 +674,7 @@ namespace BasicShopWebAPI.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Transactions");
                 });
@@ -776,13 +750,6 @@ namespace BasicShopWebAPI.Data.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("AppUserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -893,9 +860,7 @@ namespace BasicShopWebAPI.Data.Migrations
                 {
                     b.HasOne("BasicShopWebAPI.Data.Entities.AppUser", "AppUser")
                         .WithMany("Transactions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppUserId");
                 });
 #pragma warning restore 612, 618
         }
