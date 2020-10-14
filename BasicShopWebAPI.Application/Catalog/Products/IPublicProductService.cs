@@ -1,13 +1,12 @@
 ﻿using BasicShopWebAPI.Application.Catalog.Products.Dtos;
+using BasicShopWebAPI.Application.Catalog.Products.Dtos.Public;
 using BasicShopWebAPI.Application.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace BasicShopWebAPI.Application.Catalog.Products
 {
     public interface IPublicProductService
     {
-        PagedResult<ProductViewModel> GetAllByCategoryId(int categoryId, int pageIndex, int pageSize);
+        Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetProductPagingRequest request);
     }
 }

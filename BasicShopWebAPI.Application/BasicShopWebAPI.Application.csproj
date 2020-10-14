@@ -9,8 +9,4 @@
     <ProjectReference Include="..\BasicShopWebAPI.Data\BasicShopWebAPI.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Catalog\Products\Dtos\Manage\" />
-  </ItemGroup>
-
 </Project>
