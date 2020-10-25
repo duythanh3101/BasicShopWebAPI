@@ -1,6 +1,6 @@
-﻿using BasicShopWebAPI.Application.Catalog.Products.Dtos;
-using BasicShopWebAPI.Application.Catalog.Products.Dtos.Public;
-using BasicShopWebAPI.Application.Dtos;
+﻿using BasicShopWebAPI.ViewModels.Catalog;
+using BasicShopWebAPI.ViewModels.Catalog.Public;
+using BasicShopWebAPI.ViewModels.Common;
 using System.Threading.Tasks;
 
 namespace BasicShopWebAPI.Application.Catalog.Products

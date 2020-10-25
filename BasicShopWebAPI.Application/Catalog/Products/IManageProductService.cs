@@ -1,9 +1,8 @@
-﻿using BasicShopWebAPI.Application.Catalog.Products.Dtos;
-using BasicShopWebAPI.Application.Catalog.Products.Dtos.Public;
-using BasicShopWebAPI.Application.Dtos;
-using System;
+﻿using BasicShopWebAPI.ViewModels.Catalog;
+using BasicShopWebAPI.ViewModels.Catalog.Manage;
+using BasicShopWebAPI.ViewModels.Common;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BasicShopWebAPI.Application.Catalog.Products
@@ -23,5 +22,13 @@ namespace BasicShopWebAPI.Application.Catalog.Products
         Task AddViewcount(int productId);
 
         Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request);
+
+        Task<int> AddImages(int productId, List<IFormFile> files);
+
+        Task<int> RemoveImages(int imageId);
+
+        Task<int> UpdateImage(int imageId, string caption, bool isDefault);
+
+        Task<List<ProductImageViewModel>> GetListImage(int productId);
     }
 }

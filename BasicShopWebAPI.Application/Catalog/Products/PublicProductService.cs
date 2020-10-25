@@ -1,13 +1,11 @@
-﻿using BasicShopWebAPI.Application.Catalog.Products.Dtos;
-using BasicShopWebAPI.Application.Catalog.Products.Dtos.Public;
-using BasicShopWebAPI.Application.Dtos;
-using BasicShopWebAPI.Data.EF;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
+﻿using BasicShopWebAPI.Data.EF;
+using BasicShopWebAPI.ViewModels.Catalog;
+using BasicShopWebAPI.ViewModels.Catalog.Public;
+using BasicShopWebAPI.ViewModels.Common;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BasicShopWebAPI.Application.Catalog.Products
 {
