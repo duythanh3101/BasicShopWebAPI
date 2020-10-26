@@ -5,8 +5,9 @@ using System.Text;
 
 namespace BasicShopWebAPI.ViewModels.Catalog.Public
 {
-    public class GetProductPagingRequest : PagingRequestBase
+    public class GetPublicProductPagingRequest : PagingRequestBase
     {
+        public string LanguageId { get; set; }
         public int? CategoryId { get; set; }
     }
 }
