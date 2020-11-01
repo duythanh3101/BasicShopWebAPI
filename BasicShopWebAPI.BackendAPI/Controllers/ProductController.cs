@@ -2,12 +2,14 @@
 using BasicShopWebAPI.Application.Catalog.Products;
 using BasicShopWebAPI.ViewModels.Catalog.Manage;
 using BasicShopWebAPI.ViewModels.Catalog.Public;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BasicShopWebAPI.BackendAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductController : ControllerBase
     {
 
@@ -32,6 +34,11 @@ namespace BasicShopWebAPI.BackendAPI.Controllers
             return Ok(products);
         }
 
+        /// <summary>
+        /// Get product by language id with page index and page size
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         //http://localhost:port/product/public-paging
         [HttpGet("public-paging/{languageId}")]
         public async Task<IActionResult> Get([FromQuery] GetPublicProductPagingRequest request)
@@ -40,6 +47,12 @@ namespace BasicShopWebAPI.BackendAPI.Controllers
             return Ok(products);
         }
 
+        /// <summary>
+        /// Get product by id and language id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="languageId"></param>
+        /// <returns></returns>
         //http://localhost:port/product/1
         [HttpGet("{id}/{languageId}")]
         public async Task<IActionResult> GetById(int id, string languageId)
@@ -50,6 +63,11 @@ namespace BasicShopWebAPI.BackendAPI.Controllers
             return Ok(product);
         }
 
+        /// <summary>
+        /// Add new product
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
         {
@@ -62,6 +80,11 @@ namespace BasicShopWebAPI.BackendAPI.Controllers
             return CreatedAtAction(nameof(GetById), new { id = productId }, product);
         }
 
+        /// <summary>
+        /// Update product
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> Update([FromForm] ProductUpdateRequest request)
         {
@@ -71,6 +94,11 @@ namespace BasicShopWebAPI.BackendAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Delete product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -80,6 +108,12 @@ namespace BasicShopWebAPI.BackendAPI.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Update product price
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="newPrice"></param>
+        /// <returns></returns>
         [HttpPut("price/{id}/{newPrice}")]
         public async Task<IActionResult> UpdatePrice(int id, decimal newPrice)
         {
